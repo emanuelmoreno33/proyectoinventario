@@ -1,0 +1,10 @@
+C:\Users\DELL\source\repos\Inventario\bin\Debug\Inventario.exe.config
+C:\Users\DELL\source\repos\Inventario\bin\Debug\Inventario.exe
+C:\Users\DELL\source\repos\Inventario\bin\Debug\Inventario.pdb
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.csprojAssemblyReference.cache
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.Form1.resources
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.Properties.Resources.resources
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.csproj.GenerateResource.cache
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.exe
+C:\Users\DELL\source\repos\Inventario\obj\Debug\Inventario.pdb
