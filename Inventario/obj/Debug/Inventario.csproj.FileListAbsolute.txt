@@ -23,3 +23,7 @@ D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\bin\Debug\My
 D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\bin\Debug\BouncyCastle.Crypto.dll
 D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\bin\Debug\Renci.SshNet.dll
 D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\obj\Debug\Inventario.csproj.CopyComplete
+D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\obj\Debug\Inventario.Iniciosesion.resources
+D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\obj\Debug\Inventario.reportes.resources
+D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\obj\Debug\Inventario.usuarios.resources
+D:\Usuarios\Emanuel\Documentos\github\proyectoinventario\Inventario\obj\Debug\Inventario.ayuda.resources

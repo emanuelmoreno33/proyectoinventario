@@ -32,6 +32,8 @@
             this.cmdInventario = new System.Windows.Forms.Button();
             this.cmdMaterial = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.Panel();
+            this.cmdusuarios = new System.Windows.Forms.Button();
+            this.cmdreportes = new System.Windows.Forms.Button();
             this.cmdAyuda = new System.Windows.Forms.Button();
             this.Inventario = new System.Windows.Forms.Panel();
             this.tablas = new System.Windows.Forms.GroupBox();
@@ -47,6 +49,9 @@
             this.materialBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.inventarioprogramaDataSet1 = new Inventario.inventarioprogramaDataSet1();
             this.Produccion = new System.Windows.Forms.GroupBox();
+            this.prod360 = new System.Windows.Forms.NumericUpDown();
+            this.prodspeed = new System.Windows.Forms.NumericUpDown();
+            this.prodflex = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -94,9 +99,9 @@
             this.Material = new System.Windows.Forms.Panel();
             this.materialTableAdapter = new Inventario.inventarioprogramaDataSet1TableAdapters.materialTableAdapter();
             this.tableAdapterManager = new Inventario.inventarioprogramaDataSet1TableAdapters.TableAdapterManager();
-            this.prodflex = new System.Windows.Forms.NumericUpDown();
-            this.prodspeed = new System.Windows.Forms.NumericUpDown();
-            this.prod360 = new System.Windows.Forms.NumericUpDown();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu.SuspendLayout();
             this.Inventario.SuspendLayout();
             this.tablas.SuspendLayout();
@@ -104,6 +109,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventarioprogramaDataSet1)).BeginInit();
             this.Produccion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prod360)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodflex)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matnuevo360)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matflexnuevo)).BeginInit();
@@ -120,9 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.matmodalerta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matmodcantidad)).BeginInit();
             this.Material.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.prodflex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prod360)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdInventario
@@ -152,14 +158,36 @@
             this.menu.AutoSize = true;
             this.menu.BackColor = System.Drawing.Color.White;
             this.menu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menu.Controls.Add(this.cmdusuarios);
+            this.menu.Controls.Add(this.cmdreportes);
             this.menu.Controls.Add(this.cmdAyuda);
             this.menu.Controls.Add(this.cmdMaterial);
             this.menu.Controls.Add(this.cmdInventario);
             this.menu.Location = new System.Drawing.Point(0, 7);
             this.menu.Margin = new System.Windows.Forms.Padding(4);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1068, 107);
+            this.menu.Size = new System.Drawing.Size(1096, 107);
             this.menu.TabIndex = 3;
+            // 
+            // cmdusuarios
+            // 
+            this.cmdusuarios.Location = new System.Drawing.Point(343, 9);
+            this.cmdusuarios.Name = "cmdusuarios";
+            this.cmdusuarios.Size = new System.Drawing.Size(102, 86);
+            this.cmdusuarios.TabIndex = 7;
+            this.cmdusuarios.Text = "Usuarios";
+            this.cmdusuarios.UseVisualStyleBackColor = true;
+            this.cmdusuarios.Click += new System.EventHandler(this.cmdusuarios_Click);
+            // 
+            // cmdreportes
+            // 
+            this.cmdreportes.Location = new System.Drawing.Point(233, 9);
+            this.cmdreportes.Name = "cmdreportes";
+            this.cmdreportes.Size = new System.Drawing.Size(91, 86);
+            this.cmdreportes.TabIndex = 6;
+            this.cmdreportes.Text = "Reportes";
+            this.cmdreportes.UseVisualStyleBackColor = true;
+            this.cmdreportes.Click += new System.EventHandler(this.cmdreportes_Click);
             // 
             // cmdAyuda
             // 
@@ -306,6 +334,27 @@
             this.Produccion.TabStop = false;
             this.Produccion.Text = "Produccion";
             // 
+            // prod360
+            // 
+            this.prod360.Location = new System.Drawing.Point(12, 188);
+            this.prod360.Name = "prod360";
+            this.prod360.Size = new System.Drawing.Size(120, 22);
+            this.prod360.TabIndex = 12;
+            // 
+            // prodspeed
+            // 
+            this.prodspeed.Location = new System.Drawing.Point(12, 120);
+            this.prodspeed.Name = "prodspeed";
+            this.prodspeed.Size = new System.Drawing.Size(120, 22);
+            this.prodspeed.TabIndex = 11;
+            // 
+            // prodflex
+            // 
+            this.prodflex.Location = new System.Drawing.Point(12, 53);
+            this.prodflex.Name = "prodflex";
+            this.prodflex.Size = new System.Drawing.Size(120, 22);
+            this.prodflex.TabIndex = 10;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -329,6 +378,7 @@
             this.button5.TabIndex = 8;
             this.button5.Text = "Confirmar";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label2
             // 
@@ -682,6 +732,7 @@
             // 
             this.modmaterialnombre.DataSource = this.materialBindingSource;
             this.modmaterialnombre.DisplayMember = "nombre";
+            this.modmaterialnombre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modmaterialnombre.FormattingEnabled = true;
             this.modmaterialnombre.Location = new System.Drawing.Point(196, 33);
             this.modmaterialnombre.Name = "modmaterialnombre";
@@ -800,26 +851,29 @@
             this.tableAdapterManager.materialTableAdapter = this.materialTableAdapter;
             this.tableAdapterManager.usuarioTableAdapter = null;
             // 
-            // prodflex
+            // statusStrip1
             // 
-            this.prodflex.Location = new System.Drawing.Point(12, 53);
-            this.prodflex.Name = "prodflex";
-            this.prodflex.Size = new System.Drawing.Size(120, 22);
-            this.prodflex.TabIndex = 10;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 578);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1109, 25);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // prodspeed
+            // toolStripStatusLabel1
             // 
-            this.prodspeed.Location = new System.Drawing.Point(12, 120);
-            this.prodspeed.Name = "prodspeed";
-            this.prodspeed.Size = new System.Drawing.Size(120, 22);
-            this.prodspeed.TabIndex = 11;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(49, 20);
+            this.toolStripStatusLabel1.Text = "Status";
             // 
-            // prod360
+            // toolStripStatusLabel2
             // 
-            this.prod360.Location = new System.Drawing.Point(12, 188);
-            this.prod360.Name = "prod360";
-            this.prod360.Size = new System.Drawing.Size(120, 22);
-            this.prod360.TabIndex = 12;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(59, 20);
+            this.toolStripStatusLabel2.Text = "Usuario";
             // 
             // Form1
             // 
@@ -827,10 +881,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(1182, 603);
+            this.ClientSize = new System.Drawing.Size(1109, 603);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menu);
-            this.Controls.Add(this.Inventario);
             this.Controls.Add(this.Material);
+            this.Controls.Add(this.Inventario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1200, 650);
@@ -847,6 +902,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.inventarioprogramaDataSet1)).EndInit();
             this.Produccion.ResumeLayout(false);
             this.Produccion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prod360)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prodflex)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matnuevo360)).EndInit();
@@ -866,9 +924,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.matmodalerta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matmodcantidad)).EndInit();
             this.Material.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.prodflex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prod360)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -943,6 +1000,11 @@
         private System.Windows.Forms.NumericUpDown prod360;
         private System.Windows.Forms.NumericUpDown prodspeed;
         private System.Windows.Forms.NumericUpDown prodflex;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button cmdreportes;
+        private System.Windows.Forms.Button cmdusuarios;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 
