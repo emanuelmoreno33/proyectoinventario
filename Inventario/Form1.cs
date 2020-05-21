@@ -13,6 +13,9 @@ namespace Inventario
 {
     public partial class Form1 : Form
     {
+        int idusuario = 0;
+        string MyConnection2 = "server = 127.0.0.1; user id = root; password = 1234; persistsecurityinfo = True; database = inventarioprograma";
+
         public Form1()
         {
             InitializeComponent();
@@ -34,14 +37,51 @@ namespace Inventario
             return registros;
         }
 
+        private void actualizarforma()
+        {
+            this.materialusarioTableAdapter.Fill(this.inventarioprogramaDataSet1.materialusario);
+            combomaterialact.BeginUpdate();
+            this.materialTableAdapter.Fill(this.inventarioprogramaDataSet1.material);
+            combomaterialact.EndUpdate();
+        }
+
+        private void obtenerdatosmod()
+        {
+            try
+            {
+                string Query = "select nombre,cantidad_inicial,stock_alert,cant_speed,cant_flex,cant_360 from material where idmaterial =" + modmaterialnombre.SelectedValue + ";";
+                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                var cmd = new MySqlCommand(Query, MyConn2);
+                MyConn2.Open();
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    matmodnombrenuevo.Text = rdr.GetString(0);
+                    matmodcantidad.Value = rdr.GetInt32(1);
+                    matmodalerta.Value = rdr.GetInt32(2);
+                    modspeed.Value = rdr.GetInt32(3);
+                    modflex.Value = rdr.GetInt32(4);
+                    mod360.Value = rdr.GetInt32(5);
+                }
+                MyConn2.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet1.materialusario' Puede moverla o quitarla según sea necesario.
+            this.materialusarioTableAdapter.Fill(this.inventarioprogramaDataSet1.materialusario);
             // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet1.material' Puede moverla o quitarla según sea necesario.
             this.materialTableAdapter.Fill(this.inventarioprogramaDataSet1.material);
             // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet.material' Puede moverla o quitarla según sea necesario.
             // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet.material' Puede moverla o quitarla según sea necesario.
             Inventario.Visible = true;
             Material.Visible = false;
+            obtenerdatosmod();
         }
 
         public void ShowDialog(ref int idiniciado,string nombre)
@@ -69,32 +109,6 @@ namespace Inventario
             ay.Show();
         }
 
-        private void materialBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.materialBindingSource.EndEdit();
-
-        }
-
-        private void materialBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.materialBindingSource.EndEdit();
-
-        }
-
-        private void materialBindingNavigatorSaveItem_Click_2(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.materialBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.inventarioprogramaDataSet1);
-
-        }
-
-        //codigo creado
-
-        int idusuario = 0;
-        string MyConnection2 = "server = 127.0.0.1; user id = root; password = 1234; persistsecurityinfo = True; database = inventarioprograma";
         private void btnnuevo_Click(object sender, EventArgs e)
         {
             try
@@ -109,6 +123,7 @@ namespace Inventario
                 MyConn2.Open();
                 MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.  
                 MessageBox.Show("Save Data");
+                actualizarforma();
                 while (MyReader2.Read())
                 {
                 }
@@ -134,6 +149,7 @@ namespace Inventario
             MyConn2.Open();
             MyReader2 = MyCommand2.ExecuteReader();
             MessageBox.Show("Datos actualizados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.None);
+                actualizarforma();
             while (MyReader2.Read())
             {
             }
@@ -158,6 +174,8 @@ namespace Inventario
                 MyConn2.Open();
                 MyReader2 = MyCommand2.ExecuteReader();
                 MessageBox.Show("Datos actualizados","Aviso",MessageBoxButtons.OK,MessageBoxIcon.None);
+                actualizarforma();
+                obtenerdatosmod();
                 while (MyReader2.Read())
                 {
                 }
@@ -171,29 +189,8 @@ namespace Inventario
 
         private void modmaterialnombre_SelectedIndexChanged(object sender, EventArgs e)
         {
-           try
-            {
-            string Query = "select nombre,cantidad_inicial,stock_alert,cant_speed,cant_flex,cant_360 from material where idmaterial =" + modmaterialnombre.SelectedValue + ";";
-            MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
-            var cmd = new MySqlCommand(Query, MyConn2);
-                MyConn2.Open();
-                MySqlDataReader rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-                {
-                    matmodnombrenuevo.Text = rdr.GetString(0);
-                    matmodcantidad.Value = rdr.GetInt32(1);
-                    matmodalerta.Value = rdr.GetInt32(2);
-                    modspeed.Value = rdr.GetInt32(3);
-                    modflex.Value = rdr.GetInt32(4);
-                    mod360.Value = rdr.GetInt32(5);
-                }
-                MyConn2.Close();
-            }  
-           catch (Exception ex)  
-            {   
-               
-            }
-}
+            obtenerdatosmod();
+        }
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -270,7 +267,7 @@ namespace Inventario
                     MyConn2.Close();//Connection closed here
                 }
                 //This is my insert query in which i am taking input from the user through windows forms  
-                string Query3 = "insert into registros_produccion(prod_flex,prod_speed,prod_360,fecha_produccion,usuario) values("+flex+","+speed+","+v360+",NOW(),1);";
+                string Query3 = "insert into registros_produccion(prod_flex,prod_speed,prod_360,fecha_produccion,usuario) values("+flex+","+speed+","+v360+",NOW(),"+idusuario+");";
                 //This is command class which will handle the query and connection object.  
                 MySqlCommand MyCommand2 = new MySqlCommand(Query3, MyConn2);
                 MySqlDataReader MyReader2;
@@ -281,6 +278,7 @@ namespace Inventario
                 {
                 }
                 MyConn2.Close();
+                actualizarforma();
             }     
 
         }
@@ -288,13 +286,14 @@ namespace Inventario
         private void cmdreportes_Click(object sender, EventArgs e)
         {
             reportes rp = new reportes();
-            rp.Show();
+            rp.ShowDialog();
         }
 
         private void cmdusuarios_Click(object sender, EventArgs e)
         {
             usuarios us = new usuarios();
-            us.Show();
+            us.ShowDialog();
         }
+
     }
-    }
+}

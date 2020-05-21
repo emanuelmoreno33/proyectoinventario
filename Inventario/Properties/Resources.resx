@@ -121,4 +121,16 @@
   <data name="inventario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventario.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Anotación 2020-05-13 182905" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Anotación 2020-05-13 182905.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Anotación 2020-05-13 182918" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Anotación 2020-05-13 182918.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Anotación 2020-05-13 183009" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Anotación 2020-05-13 183009.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Anotación 2020-05-13 183027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Anotación 2020-05-13 183027.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

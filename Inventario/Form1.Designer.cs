@@ -45,8 +45,8 @@
             this.cantspeedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantflexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cant360DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuarioregistradoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialusarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.inventarioprogramaDataSet1 = new Inventario.inventarioprogramaDataSet1();
             this.Produccion = new System.Windows.Forms.GroupBox();
             this.prod360 = new System.Windows.Forms.NumericUpDown();
@@ -56,6 +56,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.materialBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.matnuevo360 = new System.Windows.Forms.NumericUpDown();
             this.matflexnuevo = new System.Windows.Forms.NumericUpDown();
@@ -102,16 +103,18 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.materialusarioTableAdapter = new Inventario.inventarioprogramaDataSet1TableAdapters.materialusarioTableAdapter();
             this.menu.SuspendLayout();
             this.Inventario.SuspendLayout();
             this.tablas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablasIn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialusarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventarioprogramaDataSet1)).BeginInit();
             this.Produccion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prod360)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodflex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matnuevo360)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matflexnuevo)).BeginInit();
@@ -241,8 +244,8 @@
             this.cantspeedDataGridViewTextBoxColumn,
             this.cantflexDataGridViewTextBoxColumn,
             this.cant360DataGridViewTextBoxColumn,
-            this.usuarioregistradoDataGridViewTextBoxColumn});
-            this.tablasIn.DataSource = this.materialBindingSource1;
+            this.usuario});
+            this.tablasIn.DataSource = this.materialusarioBindingSource;
             this.tablasIn.Location = new System.Drawing.Point(11, 23);
             this.tablasIn.Margin = new System.Windows.Forms.Padding(4);
             this.tablasIn.Name = "tablasIn";
@@ -299,17 +302,17 @@
             this.cant360DataGridViewTextBoxColumn.Name = "cant360DataGridViewTextBoxColumn";
             this.cant360DataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // usuarioregistradoDataGridViewTextBoxColumn
+            // usuario
             // 
-            this.usuarioregistradoDataGridViewTextBoxColumn.DataPropertyName = "usuario_registrado";
-            this.usuarioregistradoDataGridViewTextBoxColumn.HeaderText = "Registrado por";
-            this.usuarioregistradoDataGridViewTextBoxColumn.Name = "usuarioregistradoDataGridViewTextBoxColumn";
-            this.usuarioregistradoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.usuario.DataPropertyName = "usuario";
+            this.usuario.HeaderText = "Registrado por";
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
             // 
-            // materialBindingSource1
+            // materialusarioBindingSource
             // 
-            this.materialBindingSource1.DataMember = "material";
-            this.materialBindingSource1.DataSource = this.inventarioprogramaDataSet1;
+            this.materialusarioBindingSource.DataMember = "materialusario";
+            this.materialusarioBindingSource.DataSource = this.inventarioprogramaDataSet1;
             // 
             // inventarioprogramaDataSet1
             // 
@@ -401,6 +404,11 @@
             this.label1.Size = new System.Drawing.Size(49, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "Flex";
+            // 
+            // materialBindingSource1
+            // 
+            this.materialBindingSource1.DataMember = "material";
+            this.materialBindingSource1.DataSource = this.inventarioprogramaDataSet1;
             // 
             // groupBox1
             // 
@@ -584,6 +592,7 @@
             // 
             this.combomaterialact.DataSource = this.materialBindingSource;
             this.combomaterialact.DisplayMember = "nombre";
+            this.combomaterialact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combomaterialact.FormattingEnabled = true;
             this.combomaterialact.Location = new System.Drawing.Point(130, 27);
             this.combomaterialact.Name = "combomaterialact";
@@ -875,6 +884,10 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(59, 20);
             this.toolStripStatusLabel2.Text = "Usuario";
             // 
+            // materialusarioTableAdapter
+            // 
+            this.materialusarioTableAdapter.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -882,9 +895,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(1109, 603);
+            this.Controls.Add(this.Material);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menu);
-            this.Controls.Add(this.Material);
             this.Controls.Add(this.Inventario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -898,13 +911,14 @@
             this.Inventario.ResumeLayout(false);
             this.tablas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablasIn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialusarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventarioprogramaDataSet1)).EndInit();
             this.Produccion.ResumeLayout(false);
             this.Produccion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prod360)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodspeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodflex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialBindingSource1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matnuevo360)).EndInit();
@@ -988,14 +1002,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idmaterialDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadinicialDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockalertDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantspeedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantflexDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cant360DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuarioregistradoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource materialBindingSource1;
         private System.Windows.Forms.NumericUpDown prod360;
         private System.Windows.Forms.NumericUpDown prodspeed;
@@ -1005,6 +1011,16 @@
         private System.Windows.Forms.Button cmdreportes;
         private System.Windows.Forms.Button cmdusuarios;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.BindingSource materialusarioBindingSource;
+        private inventarioprogramaDataSet1TableAdapters.materialusarioTableAdapter materialusarioTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idmaterialDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadinicialDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockalertDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantspeedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantflexDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cant360DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
     }
 }
 
