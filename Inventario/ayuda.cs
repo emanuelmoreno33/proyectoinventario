@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Inventario
@@ -17,10 +10,14 @@ namespace Inventario
             InitializeComponent();
         }
 
+        // Codigo del combobox que permite mostrar que ventana se desea obtener ayuda, en caso de lograr ingresar un valor nulo, mostrara la ventana de origen
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //se obtiene el valor seleccionado del combobox
             string valor = comboBox1.SelectedItem.ToString();
 
+            //con if anidados se comprueba que valor es el que solicito.
+            //primero se obtiene la imagen de los recursos que se tienen, luego cambia el texto.
             if(valor == "inventario")
             {
                 pictureBox1.Image = Properties.Resources.Anotación_2020_05_13_182905;

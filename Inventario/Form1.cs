@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -77,8 +70,6 @@ namespace Inventario
             this.materialusarioTableAdapter.Fill(this.inventarioprogramaDataSet1.materialusario);
             // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet1.material' Puede moverla o quitarla según sea necesario.
             this.materialTableAdapter.Fill(this.inventarioprogramaDataSet1.material);
-            // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet.material' Puede moverla o quitarla según sea necesario.
-            // TODO: esta línea de código carga datos en la tabla 'inventarioprogramaDataSet.material' Puede moverla o quitarla según sea necesario.
             Inventario.Visible = true;
             Material.Visible = false;
             obtenerdatosmod();
@@ -87,8 +78,10 @@ namespace Inventario
         public void ShowDialog(ref int idiniciado,string nombre)
         {
             idusuario = idiniciado;
+            pocostock();
             toolStripStatusLabel2.Text = "Usuario:" + nombre;
             this.ShowDialog();
+            
         }
 
         private void CmdInventario_Click_1(object sender, EventArgs e)
@@ -122,7 +115,7 @@ namespace Inventario
                 MySqlDataReader MyReader2;
                 MyConn2.Open();
                 MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.  
-                MessageBox.Show("Save Data");
+                MessageBox.Show("Datos guardados","Aviso",MessageBoxButtons.OK);
                 actualizarforma();
                 while (MyReader2.Read())
                 {
@@ -192,6 +185,55 @@ namespace Inventario
             obtenerdatosmod();
         }
 
+        private void pocostock()
+        {
+            int speed = Convert.ToInt32(prodspeed.Value);
+            int flex = Convert.ToInt32(prodflex.Value);
+            int v360 = Convert.ToInt32(prod360.Value);
+            int index = 0;
+            int registros = contarregistros();
+
+            int[] id = new int[registros];
+            string[] nombrematerial = new string[registros];
+            int[] inicio = new int[registros];
+            int[] speedguardado = new int[registros];
+            int[] flexguardado = new int[registros];
+            int[] v360guardado = new int[registros];
+            int[] alerta = new int[registros];
+
+            int[] calculo = new int[registros];
+
+            string Query = "select nombre,cantidad_inicial,cant_speed,cant_flex,cant_360,idmaterial,stock_alert from material;";
+            MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+            var cmd = new MySqlCommand(Query, MyConn2);
+            MyConn2.Open();
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                nombrematerial[index] = rdr.GetString(0);
+                inicio[index] = rdr.GetInt32(1);
+                speedguardado[index] = rdr.GetInt32(2);
+                flexguardado[index] = rdr.GetInt32(3);
+                v360guardado[index] = rdr.GetInt32(4);
+                id[index] = rdr.GetInt32(5);
+                alerta[index] = rdr.GetInt32(6);
+
+                index++;
+            }
+            MyConn2.Close();
+
+            for (int i = 0; i < inicio.Length; i++)
+            {
+                calculo[i] = inicio[i] - (speedguardado[i] * speed) - (flexguardado[i] * flex) - (v360guardado[i] * v360);
+                if (calculo[i] <= alerta[i])
+                {
+                    MessageBox.Show("¡Alerta de poco stock de " + nombrematerial[i] + "!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    toolStripStatusLabel1.Text = "¡Alerta de stock!";
+                }
+
+            }
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             int speed = Convert.ToInt32(prodspeed.Value);
@@ -210,7 +252,6 @@ namespace Inventario
 
             int[] calculo = new int[registros];
 
-         
             string Query = "select nombre,cantidad_inicial,cant_speed,cant_flex,cant_360,idmaterial,stock_alert from material;";
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             var cmd = new MySqlCommand(Query, MyConn2);
@@ -241,12 +282,12 @@ namespace Inventario
                 }
                 else if(calculo[i]<=alerta[i])
                 {
-                    MessageBox.Show("¡Alerta de poco stock de" + nombrematerial[i] + "!", "Aviso",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("¡Alerta de poco stock de " + nombrematerial[i] + "!, Solo quedan " + calculo[i].ToString(), "Aviso",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     toolStripStatusLabel1.Text = "¡Alerta de stock!";
                 }
                 else
                 {
-                    MessageBox.Show("materiales sobrantes=" + calculo[i].ToString());
+                    MessageBox.Show("materiales sobrantes de "+nombrematerial[i]+" = " + calculo[i].ToString(),"Aviso",MessageBoxButtons.OK);
                 }
             }
             if (valido == true)
@@ -260,7 +301,6 @@ namespace Inventario
                     MySqlDataReader MyReader;
                     MyConn2.Open();
                     MyReader = MyCommand.ExecuteReader();
-                    MessageBox.Show("Datos actualizados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.None);
                     while (MyReader.Read())
                     {
                     }
@@ -273,14 +313,12 @@ namespace Inventario
                 MySqlDataReader MyReader2;
                 MyConn2.Open();
                 MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.  
-                MessageBox.Show("Save Data");
                 while (MyReader2.Read())
                 {
                 }
                 MyConn2.Close();
                 actualizarforma();
             }     
-
         }
 
         private void cmdreportes_Click(object sender, EventArgs e)

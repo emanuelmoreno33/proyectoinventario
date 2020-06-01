@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using iText.IO.Font.Constants;
@@ -15,9 +8,7 @@ using iText.Kernel.Geom;
 using iText.Kernel.Font; 
 using iText.Layout;
 using iText.Layout.Element;
-using iText.Kernel.Pdf.Canvas;
 using iText.Layout.Properties;
-using iText.Forms.Fields;
 using MySql.Data.MySqlClient;
 using System.Globalization;
 
@@ -292,7 +283,7 @@ namespace Inventario
             return table;
         }
 
-        public virtual void crearpdf(int valor)
+        public void crearpdf(int valor)
         {
             try
             {

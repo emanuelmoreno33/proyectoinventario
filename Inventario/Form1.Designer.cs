@@ -210,8 +210,10 @@
             this.Inventario.Controls.Add(this.Produccion);
             this.Inventario.Location = new System.Drawing.Point(-1, 122);
             this.Inventario.Margin = new System.Windows.Forms.Padding(4);
+            this.Inventario.MaximumSize = new System.Drawing.Size(1096, 450);
+            this.Inventario.MinimumSize = new System.Drawing.Size(1096, 450);
             this.Inventario.Name = "Inventario";
-            this.Inventario.Size = new System.Drawing.Size(1069, 432);
+            this.Inventario.Size = new System.Drawing.Size(1096, 450);
             this.Inventario.TabIndex = 5;
             this.Inventario.Visible = false;
             // 
@@ -868,7 +870,7 @@
             this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 578);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1109, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1097, 25);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -894,15 +896,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(1109, 603);
-            this.Controls.Add(this.Material);
+            this.ClientSize = new System.Drawing.Size(1097, 603);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menu);
+            this.Controls.Add(this.Material);
             this.Controls.Add(this.Inventario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.MinimumSize = new System.Drawing.Size(700, 650);
+            this.MaximumSize = new System.Drawing.Size(1115, 650);
+            this.MinimumSize = new System.Drawing.Size(1115, 650);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Inventario Helmets & Stuff";
